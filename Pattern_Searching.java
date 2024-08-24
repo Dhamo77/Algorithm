@@ -8,6 +8,7 @@ public class Pattern_Searching {
         String pat=scan.nextLine();
         naive_algo(txt,pat);
     }
+    // Navie Algorithm
     public static void naive_algo(String txt, String pat) {
         int textLength=txt.length();
         int patLength=pat.length();
