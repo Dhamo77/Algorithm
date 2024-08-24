@@ -25,6 +25,7 @@ public class Pattern_Searching {
             }
         }
     }
+    // KMP Algorithm
     public static void kmp_Algorithm(String txt, String pat){
         int t=txt.length();
         int p=pat.length();
