@@ -47,4 +47,5 @@ public class SlidingWindow {
             System.out.print(firstNegativeElement + " ");
         }
     }
+    // Sliding Window algo for variable size
 }
