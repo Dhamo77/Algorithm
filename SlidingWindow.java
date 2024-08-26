@@ -72,30 +72,39 @@ public class SlidingWindow {
         System.out.println(minSize);
     }
     // Search for all permutations in string
-    public static void all_permutations(String text,String word){
-        int w=word.length();
-        int t=text.length();
-        int[] large =new int[t];
-        int[] small =new int[w];
-        for (int i=0;i<t;i++)
-            large[i]=text.charAt(i)-'A'+1;
-        for (int i=0;i<w;i++)
-            small[i]=word.charAt(i)-'A'+1;
-        int current_sum=0;
-        int word_sum=0;
-        for (int i=0;i<w;i++) {
-            current_sum +=large[i];
-            word_sum+=small[i];
-        }
-        for (int i=w;i<=t;i++){
-            if (current_sum==word_sum){
-                System.out.print((i-w)+" ");
-            }
-            if (i < t) {
-                current_sum = current_sum + large[i] - large[i - w];
+    static final int MAX = 256;
+
+    static boolean compare(char[] arr1, char[] arr2) {
+        for (int i = 0; i < MAX; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
             }
         }
-        System.out.println();
+        return true;
     }
-// the above function have some issues when using repeated charater.
+    static void all_permutations(String text, String word) {
+        int M = text.length();
+        int N = word.length();
+        if (N > M) {
+            System.out.println("No permutations possible as word length is greater than text length.");
+            return;
+        }
+        char[] countP = new char[MAX];
+        char[] countTW = new char[MAX];
+        for (int i = 0; i < N; i++) {
+            countP[word.charAt(i)]++;
+            countTW[text.charAt(i)]++;
+        }
+        for (int i = N; i < M; i++) {
+            if (compare(countP, countTW)) {
+                System.out.println("Found at Index " + (i - N));
+            }
+            countTW[text.charAt(i)]++;
+            countTW[text.charAt(i - N)]--;
+        }
+        if (compare(countP, countTW)) {
+            System.out.println("Found at Index " + (M - N));
+        }
+    }
+
 }
