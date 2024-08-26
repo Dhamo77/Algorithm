@@ -4,6 +4,7 @@ public class SlidingWindow {
         int k = 4;
         printFirstNegativeInteger(arr,k, arr.length);
         minimumSubArray(arr,29);
+        all_permutations("BACDGABCDA", "ABCD");
     }
     // Fixed Window size
     public  static void maximumSubArray(int[] arr,int k){
@@ -70,5 +71,31 @@ public class SlidingWindow {
         }
         System.out.println(minSize);
     }
-    // implement some other function 
+    // Search for all permutations in string
+    public static void all_permutations(String text,String word){
+        int w=word.length();
+        int t=text.length();
+        int[] large =new int[t];
+        int[] small =new int[w];
+        for (int i=0;i<t;i++)
+            large[i]=text.charAt(i)-'A'+1;
+        for (int i=0;i<w;i++)
+            small[i]=word.charAt(i)-'A'+1;
+        int current_sum=0;
+        int word_sum=0;
+        for (int i=0;i<w;i++) {
+            current_sum +=large[i];
+            word_sum+=small[i];
+        }
+        for (int i=w;i<=t;i++){
+            if (current_sum==word_sum){
+                System.out.print((i-w)+" ");
+            }
+            if (i < t) {
+                current_sum = current_sum + large[i] - large[i - w];
+            }
+        }
+        System.out.println();
+    }
+
 }
