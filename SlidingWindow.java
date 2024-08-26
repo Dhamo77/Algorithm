@@ -97,5 +97,5 @@ public class SlidingWindow {
         }
         System.out.println();
     }
-
+// the above function have some issues when using repeated charater.
 }
