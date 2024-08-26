@@ -1,8 +1,9 @@
 public class SlidingWindow {
     public static void main(String[] args) {
-        int[] arr = {12, 1, 7, 8, -15, 30, 16, 28 };
+        int[] arr = {12, 1, 7, 8, 30, -16, 28 };
         int k = 4;
         printFirstNegativeInteger(arr,k, arr.length);
+        minimumSubArray(arr,29);
     }
     // Fixed Window size
     public  static void maximumSubArray(int[] arr,int k){
@@ -46,6 +47,27 @@ public class SlidingWindow {
             }
             System.out.print(firstNegativeElement + " ");
         }
+        System.out.println();
     }
-    // Sliding Window algo for variable size
+    // Sliding Window algorithm for variable size
+    public static void minimumSubArray(int[] arr, int value){
+        int currentSum=0;
+        int minSize=Integer.MAX_VALUE;
+        int start=0;
+        int end=0;
+        while (end<arr.length){
+            currentSum+=arr[end];
+            while (currentSum>=value){
+                minSize=Math.min(minSize,end-start+1);
+                currentSum-=arr[start];
+                start++;
+                if (minSize==1){
+                    System.out.println(minSize);
+                    return;
+                }
+            }
+            end++;
+        }
+        System.out.println(minSize);
+    }
 }
