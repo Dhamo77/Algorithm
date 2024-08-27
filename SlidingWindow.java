@@ -117,13 +117,13 @@ public class SlidingWindow {
             currentSum+=arr[end];
            while (currentSum>=k){
                if (currentSum==k){
-                   System.out.println((start+1)+" "+(end+1));
+                   System.out.println("Staring Index: "+(start+1)+"Ending Index : "+(end+1));
                    return;
                }
                currentSum=currentSum-arr[start];
                start++;
            }
         }
-        System.out.println(-1);
+        System.out.println("There is no subarray with + k + sum : "+-1);
     }
 }
