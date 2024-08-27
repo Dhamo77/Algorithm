@@ -2,9 +2,11 @@ public class SlidingWindow {
     public static void main(String[] args) {
         int[] arr = {12, 1, 7, 8, 30, -16, 28 };
         int k = 4;
-        printFirstNegativeInteger(arr,k, arr.length);
-        minimumSubArray(arr,29);
-        all_permutations("BACDGABCDA", "ABCD");
+//        printFirstNegativeInteger(arr,k, arr.length);
+//        minimumSubArray(arr,29);
+//        all_permutations("BACDGABCDA", "ABCD");
+        int[] a1={ 1, 4};
+        sumInSubArray(a1,5);
     }
     // Fixed Window size
     public  static void maximumSubArray(int[] arr,int k){
@@ -106,5 +108,22 @@ public class SlidingWindow {
             System.out.println("Found at Index " + (M - N));
         }
     }
-    // Done
+    // Find SubArrays with given sum
+    public static void sumInSubArray(int[] arr,int k) {
+        int currentSum = 0;
+        int start=0;
+        int end;
+        for (end=0;end< arr.length;end++){
+            currentSum+=arr[end];
+           while (currentSum>=k){
+               if (currentSum==k){
+                   System.out.println((start+1)+" "+(end+1));
+                   return;
+               }
+               currentSum=currentSum-arr[start];
+               start++;
+           }
+        }
+        System.out.println(-1);
+    }
 }
